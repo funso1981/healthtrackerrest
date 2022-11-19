@@ -19,7 +19,7 @@ class DbConfig{
         val PGDATABASE = "vjanhzma"
 
         //url format should be jdbc:postgresql://host:port/database
-        val url = "jdbc:postgresql://$PGHOST:$PGPORT/$PGDATABASE"
+        val url  = "jdbc:postgresql://$PGHOST:$PGPORT/$PGDATABASE"
 
         val dbConfig = Database.connect(url,
             driver="org.postgresql.Driver",
