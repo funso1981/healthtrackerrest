@@ -27,7 +27,6 @@ class JavalinConfig {
             exception(Exception::class.java) { e, _ -> e.printStackTrace() }
             error(404) { ctx -> ctx.json("404 - Not Found") }
         }.start(getRemoteAssignedPort())
-
         registerRoutes(app)
         return app
     }
