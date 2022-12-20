@@ -2,7 +2,7 @@ package ie.setu.config
 
 import mu.KotlinLogging
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.name
+
 
 class DbConfig{
     private val logger = KotlinLogging.logger {}
