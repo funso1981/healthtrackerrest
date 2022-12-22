@@ -20,6 +20,25 @@
           </div>
         </div>
       </div>
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">Total Items</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{items.length}} items</h5>
+            <a href="/items" class="btn btn-primary">More Details...</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <h5 class="card-header">Measurements</h5>
+          <div class="card-body">
+            <h5 class="card-title">{{measurements.length}} measurements</h5>
+            <a href="/measurements" class="btn btn-primary">More Details...</a>
+          </div>
+        </div>
+      </div>
+
     </div>
   </app-layout>
 </template>
@@ -30,7 +49,9 @@ Vue.component('home-page',
       template: "#home-page",
       data: () => ({
         users: [],
-        activities: []
+        activities: [],
+        items: [],
+        measurements: []
       }),
       created() {
         axios.get("/api/users")
@@ -39,6 +60,12 @@ Vue.component('home-page',
         axios.get("/api/activities")
             .then(res => this.activities = res.data)
             .catch(() => alert("Error while fetching activities"));
+        axios.get("/api/items")
+            .then(res => this.items = res.data)
+            .catch(() => alert("Error while fetching items"));
+        axios.get("/api/measurements")
+            .then(res => this.activities = res.data)
+            .catch(() => alert("Error while fetching measurements"));
       }
     });
 </script>
