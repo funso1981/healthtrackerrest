@@ -7,7 +7,7 @@
           <h5 class="card-header">Registered Users</h5>
           <div class="card-body">
             <h5 class="card-title">{{users.length}} users</h5>
-            <a href="/users" class="btn btn-primary">More Details...</a>
+            <a href="/users" class="btn btn-success">More Details...</a>
           </div>
         </div>
       </div>
@@ -16,7 +16,7 @@
           <h5 class="card-header">Total Activities</h5>
           <div class="card-body">
             <h5 class="card-title">{{activities.length}} activities</h5>
-            <a href="/activities" class="btn btn-primary">More Details...</a>
+            <a href="/activities" class="btn btn-success">More Details...</a>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
           <h5 class="card-header">Total Items</h5>
           <div class="card-body">
             <h5 class="card-title">{{items.length}} items</h5>
-            <a href="/items" class="btn btn-primary">More Details...</a>
+            <a href="/items" class="btn btn-success">More Details...</a>
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <h5 class="card-header">Measurements</h5>
           <div class="card-body" >
             <h5 class="card-title">{{measurements.length}} measurements</h5>
-            <a href="/measurements" class="btn btn-primary">More Details...</a>
+            <a href="/measurements" class="btn btn-success">More Details...</a>
           </div>
         </div>
       </div>
