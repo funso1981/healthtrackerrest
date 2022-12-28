@@ -154,6 +154,13 @@
             <artifactId>axios</artifactId>
             <version>0.19.2</version>
         </dependency>
+
+        <!-- https://mavenlibs.com/maven/dependency/org.webjars.npm/vue-chartjs -->
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>vue-chartjs</artifactId>
+            <version>3.5.1</version>
+        </dependency>
     </dependencies>
 
     <build>

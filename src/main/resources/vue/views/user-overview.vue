@@ -17,19 +17,19 @@
       </div>
       <div class="card-body" :class="{ 'd-none': hideForm}">
         <form id="addUser">
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="input-user-name">Name</span>
-            </div>
-            <input type="text" class="form-control" v-model="formData.name" name="name" placeholder="Name"/>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input-user-name">Name</span>
           </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="input-user-email">Email</span>
-            </div>
-            <input type="email" class="form-control" v-model="formData.email" name="email" placeholder="Email"/>
+          <input type="text" class="form-control" v-model="formData.name" name="name" placeholder="Name"/>
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="input-user-email">Email</span>
           </div>
-        </form>
+          <input type="email" class="form-control" v-model="formData.email" name="email" placeholder="Email"/>
+        </div>
+      </form>
         <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addUser()">Add User</button>
       </div>
     </div>

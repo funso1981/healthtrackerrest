@@ -64,6 +64,8 @@ Vue.component("user-profile", {
     user: null,
     noUserFound: false,
     activities: [],
+    items: [],
+    measurements: [],
   }),
   created: function () {
         const userId = this.$javalin.pathParams["user-id"];
@@ -79,6 +81,17 @@ Vue.component("user-profile", {
             .catch(error => {
               console.log("No activities added yet (this is ok): " + error)
             })
+        axios.get(url + `/items`)
+            .then(res => this.items = res.data)
+            .catch(error => {
+              console.log("No items added yet (this is ok): " + error)
+        })
+
+        axios.get(url + `/measurements`)
+            .then(res => this.measurements = res.data)
+            .catch(error => {
+              console.log("No measurements added yet (this is ok): " + error)
+        })
       },
   methods: {
     updateUser: function () {
