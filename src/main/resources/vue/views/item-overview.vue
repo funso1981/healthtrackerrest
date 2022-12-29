@@ -31,16 +31,17 @@
             <input type="text" class="form-control" v-model="formData.quantity" name="quantity" placeholder="Quantity"/>
           </div>
 
-          <select v-model="selectedUserId" >
-            <option value="">Select a User</option>
-            <option
-                v-for="(user, index) in users"
-                :value="user.id"
-                :key="index"
-            >
-              {{ user.name }}
-            </option>
-          </select>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="input-waist">UserId</span>
+            </div>
+            <select v-model="selectedUserId">
+              <option value="">Select a User</option>
+              <option v-for="(user, index) in users" :value="user.id" :key="index">
+                {{ user.name }}
+              </option>
+            </select>
+          </div>
 
         </form>
         <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addItem()">Add Item</button>
