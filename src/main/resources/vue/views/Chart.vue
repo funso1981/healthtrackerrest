@@ -1,5 +1,5 @@
 <template id="app-chart">
-  <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+  <canvas id="myChart" style="width:80%;"></canvas>
 </template>
 
 <script>
@@ -10,29 +10,28 @@ Vue.component('app-chart',
         measurements: Array
       },
       mounted() {
-
-        const labels = [];
-        const values = [];
+        const labels = ["user"];
+        const values = [0];
 
         this.measurements.forEach(measurement => {
-          let date = measurement.dateadded;
-          labels.push(new Date(date).toDateString());
+          let user = measurement.userid;
+          labels.push(user);
           values.push(measurement.waist);
         })
 
         new Chart("myChart", {
-          type: "line",
+          type: "bar",
           data: {
             labels: labels,
             datasets: [{
-              label: 'User Waist Measurements',
-              backgroundColor: "rgba(255, 105, 180, 0.2)",
-              borderColor: "rgba(255, 105, 180, 1)",
+              label: 'User Weight Record',
+              backgroundColor: "rgba(175, 219, 255, 0.8)",
+              borderColor: "rgba(175, 219, 255, 1)",
               data: values
             }]
           },
           options: {
-            label: "FUnso"
+            label: ""
           }
         });
       },

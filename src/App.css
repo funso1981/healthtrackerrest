@@ -1,0 +1,11 @@
+.navbar {
+    background-color: #e3f2fd;
+}
+.icon {
+    color: #062f44;
+    margin: 5px auto;
+    padding-right: 10px;
+}
+.nav-link {
+    padding: 20px !important;
+}

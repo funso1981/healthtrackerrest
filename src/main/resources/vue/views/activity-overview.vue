@@ -38,40 +38,62 @@
             <input type="text" class="form-control" v-model="formData.calories" name="calories" placeholder="Calories"/>
           </div>
 
-          <select v-model="selectedUserId" >
-            <option value="">Select a User</option>
-            <option
-                v-for="(user, index) in users"
-                :value="user.id"
-                :key="index"
-            >
-              {{ user.name }}
-            </option>
-          </select>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="input-calories">Username</span>
+            </div>
+            <select v-model="selectedUserId" >
+              <option value="">Select a User</option>
+              <option
+                  v-for="(user, index) in users"
+                  :value="user.id"
+                  :key="index"
+              >
+                {{ user.name }}
+              </option>
+            </select>
+          </div>
+
+
 
         </form>
         <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addActivity()">Add Activity</button>
       </div>
     </div>
-    <div class="list-group list-group-flush">
-      <div class="list-group-item d-flex align-items-start"
-           v-for="(activity,index) in activities" v-bind:key="index">
-        <div class="mr-auto p-2">
-          <span><a :href="`/activities/${activity.id}`"> {{ activity.description }} ({{ activity.duration }})</a></span>
-        </div>
-        <div class="p2">
-          <a :href="`/activities/${activity.id}`">
-            <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </button>
-          </a>
-          <button rel="tooltip" title="Delete" class="btn btn-info btn-simple btn-link"
-                  @click="deleteActivity(activity, index)">
-            <i class="fas fa-trash" aria-hidden="true"></i>
-          </button>
+    <div class ="table">
+      <div class="row">
+        <div class="col-md-12 n-bgd">
+          <div class="head-name">
+            <h1 class="pt-20">Activities</h1>
+          </div>
+          <div class="card tabluea sha-box-2">
+            <div class="content table-responsive table-full-width">
+              <table class="table table-hover table-striped">
+                <thead>
+                <th>Index</th>
+                <th>User</th>
+                <th>Activity</th>
+                <th>Duration</th>
+                <th>Calories Burned</th>
+                <th>Delete</th>
+                </thead>
+                <tbody>
+                <tr v-for="(activity,index) in activities" v-bind:key="index">
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ getUserName(activity.userId) }}</td>
+                  <td>{{ activity.description }}</td>
+                  <td>{{ activity.duration }}</td>
+                  <td>{{ activity.calories }}</td>
+                  <td><button rel="tooltip" title="Delete" class="btn btn-info btn-simple btn-link" @click="deleteActivity(activity, index)"><i class="fas fa-trash" aria-hidden="true"></i></button></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </app-layout>
 </template>
 <script>
@@ -90,6 +112,9 @@ Vue.component("activity-overview", {
     this.loadUsers();
   },
   methods: {
+    getUserName(userId) {
+      return this.users.find(u => u.id === userId).name
+    },
     fetchActivities: function () {
       axios.get("/api/activities")
           .then(res => this.activities = res.data)
@@ -135,6 +160,7 @@ Vue.component("activity-overview", {
           .then((res) => {
             this.users = res.data;
           });
+      console.log(this.activities)
     }
   }
 });

@@ -1,40 +1,31 @@
 <!-- the "home-page" element is passed as a parameter to VueComponent in the JavalinConfig file -->
 <template id="home-page">
   <app-layout>
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <h5 class="card-header">Registered Users</h5>
-          <div class="card-body">
-            <h5 class="card-title">{{users.length}} users</h5>
-            <a href="/users" class="btn btn-success">More Details...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <h5 class="card-header">Total Activities</h5>
-          <div class="card-body">
-            <h5 class="card-title">{{activities.length}} activities</h5>
-            <a href="/activities" class="btn btn-success">More Details...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <h5 class="card-header">Total Items</h5>
-          <div class="card-body">
-            <h5 class="card-title">{{items.length}} items</h5>
-            <a href="/items" class="btn btn-success">More Details...</a>
-          </div>
-        </div>
-      </div>
-      <div class="col" >
-        <div class="card">
-          <h5 class="card-header">Measurements</h5>
-          <div class="card-body" >
-            <h5 class="card-title">{{measurements.length}} measurements</h5>
-            <a href="/measurements" class="btn btn-success">More Details...</a>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="dash-header">
+          <div class="col-md-12">
+            <a href="/users">
+              <div class="sha-box dash-detail gb-rounded gb-bordered hover-fill reverse hover-slide">
+                <i class="dash-icon fa fa-users"></i>
+                <p class="dash-detail-h2">Total Users</p>
+                <p class="dash-detail-p">{{users.length}} users</p>
+              </div>
+            </a>
+            <a href="/activities">
+              <div class="sha-box dash-detail gb-rounded gb-bordered hover-fill reverse hover-slide">
+                <i class="dash-icon fa fa-cogs"></i>
+                <p class="dash-detail-h2">Total Activities</p>
+                <p class="dash-detail-p">{{activities.length}} Activities</p>
+              </div>
+            </a>
+            <a href="/items">
+              <div class="sha-box dash-detail gb-rounded gb-bordered hover-fill reverse hover-slide">
+                <i class="dash-icon fa fa-briefcase"></i>
+                <p class="dash-detail-h2">Exercises</p>
+                <p class="dash-detail-p">{{items.length}} Exercises</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
@@ -69,6 +60,124 @@ h1 {
   color: #888;
   font-weight: 400;
 }
+
+.sha-box {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+  rgba(0, 0, 0, 0.3) 0px 8px 16px -8px !important;
+}
+.sha-box-2 {
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+  rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+  rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px !important;
+}
+.dash-header {
+  margin-left: 0;
+  height: 350px;
+  width: 100%;
+  border: 1px solid #AFDBFF;
+  border-top: none !important;
+}
+
+.dash-detail {
+  display: inline-block;
+  height: 250px;
+  width: 27%;
+  margin: 2% 3%;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 8px;
+  padding: 6px 20px;
+  position: relative;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  transition: 0.5s all;
+}
+
+.dash-detail:after {
+  transition: 0.5s all;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  content: "";
+  z-index: -1;
+  border-radius: 4px;
+  background-image: linear-gradient(
+      135deg,
+      #AFDBFF 0%,
+      #AFDBFF 18%,
+      #8DCCFF 18%,
+      #8DCCFF 28%,
+      #38A6FF 28%,
+      #38A6FF 72%,
+      #0061AF 72%,
+      #0061AF 100%
+  );
+}
+
+.dash-icon {
+  text-align: center;
+  display: block;
+  font-size: 40px;
+  color: #133e61;
+  margin: 5px auto;
+  padding-right: 50px;
+}
+
+.dash-detail-h2 {
+  font-size: 40px;
+  margin: 10px;
+  font-weight: 300;
+  text-align: left;
+}
+
+.dash-detail-p {
+  font-size: 20px;
+  margin: 10px;
+  text-align: left;
+}
+
+.gb-rounded {
+  border-radius: 50px;
+}
+
+.gb-rounded.gb-bordered:after {
+  border-radius: 50px;
+}
+
+.hover-fill {
+  color: #f7f7f7;
+  transition: 0.6s all;
+}
+
+.hover-fill:hover {
+  background-color: transparent;
+}
+
+.hover-fill.reverse {
+  background-color: transparent;
+  color: #f7f7f7;
+}
+
+.hover-fill.reverse:hover {
+  background-color: #f9f6f1;
+  color: #4d4a21;
+}
+
+.hover-slide {
+  transition: 0.6s all;
+}
+
+.hover-slide:after {
+  background-size: 200% 100%;
+  background-position: 0% 0;
+}
+
+.hover-slide:hover:after {
+  background-position: 100% 0;
+}
+
 </style>
 
 <script>

@@ -5,7 +5,7 @@
       <div class="card-header">
         <div class="row">
           <div class="col-6">
-            User Waist Measurements
+            User Weight Record
           </div>
           <div class="col" align="right">
             <button rel="tooltip" title="Add"
@@ -20,63 +20,63 @@
         <form id="addWaist">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="input-waist">Waist</span>
+              <span class="input-group-text" id="input-waist">Weight (KG) </span>
             </div>
-            <input type="text" class="form-control" v-model="formData.waist" name="waist" placeholder="Waist"/>
+            <input type="text" class="form-control" v-model="formData.waist" name="waist" placeholder="weight in KG"/>
           </div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="input-waist">UserId</span>
+              <span class="input-group-text" id="input-waist">User Name</span>
             </div>
-          <select v-model="selectedUserId">
-            <option value="">Select a User</option>
-            <option v-for="(user, index) in users" :value="user.id" :key="index">
-              {{ user.name }}
-            </option>
-          </select>
+            <select v-model="selectedUserId">
+              <option value="">Select a User</option>
+              <option v-for="(user, index) in users" :value="user.id" :key="index">
+                {{ user.name }}
+              </option>
+            </select>
           </div>
         </form>
-        <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addWaist()">Add Waist
-          Reading
+        <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link" @click="addWaist()">Add new Record
         </button>
       </div>
     </div>
 
-    <app-chart v-if="measurements.length > 0" :measurements="measurements"></app-chart>
-    <br/><br/>
-    <div class="list-group list-group-flush">
-      <div class="list-group-item d-flex align-items-start"
-           v-for="(measurement,index) in measurements" v-bind:key="index">
-        <div class="mr-auto p-2">
-          <span>{{ getUserName(measurement.userid) }}</span>
-        </div>
-        <div class="mr-auto p-2">
-          <span>{{ measurement.dateadded }}</span>
-        </div>
-        <div class="mr-auto p-2">
-          <span><a :href="`/measurements/${measurement.id}`"> {{ measurement.waist }}</a></span>
-        </div>
-        <div class="p2">
-          <a :href="`/measurements/${measurement.id}`">
-            <button rel="tooltip" title="Update" class="btn btn-info btn-simple btn-link">
-              <i class="fa fa-pencil" aria-hidden="true"></i>
-            </button>
-          </a>
-          <!--<button rel="tooltip" title="Delete" class="btn btn-info btn-simple btn-link"
-                  @click="deleteItem(item, index)">
-            <i class="fas fa-trash" aria-hidden="true"></i>
-          </button>-->
+    <div class ="table">
+      <div class="row">
+        <div class="col-md-12 n-bgd">
+          <div class="head-name">
+            <h1 class="pt-20">Weight Records</h1>
+          </div>
+          <div class="card tabluea sha-box-2">
+            <div class="content table-responsive table-full-width">
+              <table class="table table-hover table-striped">
+                <thead>
+                <th>Index</th>
+                <th>User</th>
+                <th>Date Added</th>
+                <th>Weight</th>
+                <th>Delete</th>
+                </thead>
+                <tbody>
+                <tr v-for="(measurement,index) in measurements" v-bind:key="index">
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ getUserName(measurement.userid) }}</td>
+                  <td>{{ measurement.dateadded }}</td>
+                  <td>{{ measurement.waist }} KG</td>
+                  <td><button rel="tooltip" title="Delete" class="btn btn-info btn-simple btn-link" @click="deleteMeasurement(measurement, index)"><i class="fas fa-trash" aria-hidden="true"></i></button></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <app-chart v-if="measurements.length > 0" :measurements="measurements"></app-chart>
 
   </app-layout>
 </template>
 
-<style>
-*c
-
-</style>
 <script>
 Vue.component("measurement-overview", {
   template: "#measurement-overview",
@@ -91,9 +91,23 @@ Vue.component("measurement-overview", {
     this.loadUsers();
     this.loadMeasurements();
   },
+
   methods: {
     getUserName(userId) {
       return this.users.find(u => u.id === userId).name
+    },
+    deleteMeasurement: function (measurement, index) {
+      if (confirm('Are you sure you want to delete this activity? This action cannot be undone.', 'Warning')) {
+        const activityId = measurement.id;
+        const url = `/api/measurements/${activityId}`;
+        axios.delete(url)
+            .then(response =>
+                //delete from the local state so Vue will reload list automatically
+                this.measurements.splice(index, 1).push(response.data))
+            .catch(function (error) {
+              console.log(error)
+            });
+      }
     },
     addWaist: function () {
       const url = `/api/measurements`;
