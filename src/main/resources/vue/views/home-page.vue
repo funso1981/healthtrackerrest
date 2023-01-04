@@ -9,7 +9,7 @@
               <div class="sha-box dash-detail gb-rounded gb-bordered hover-fill reverse hover-slide">
                 <i class="dash-icon fa fa-users"></i>
                 <p class="dash-detail-h2">Total Users</p>
-                <p class="dash-detail-p">{{users.length}} users</p>
+                <p class="dash-detail-p">{{users.length}} Users</p>
               </div>
             </a>
             <a href="/activities">
