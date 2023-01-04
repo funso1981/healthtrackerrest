@@ -1,2 +1,2 @@
 # healthtrackerrest
-This is a health tracker app to monitor and help with people's health and lifestyle
+This is a health tracker app to help a gym monitor its registered members' health and lifestyle. 
